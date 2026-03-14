@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 
 import { useStats, useCheatDetector } from './hooks';
 
@@ -103,6 +104,7 @@ export default function App() {
           <StatsAndShare key="stats" stats={stats} lastResult={result} onRestart={restart} />
         )}
       </AnimatePresence>
+      <Analytics />
     </Layout>
   );
 }
