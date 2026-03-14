@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #000000;
+  color: #e2e8f0;
+  margin: 0;
+  min-height: 100vh;
+  /* Dark neural gradient base */
+  background-image: radial-gradient(circle at 50% 0%, #111122 0%, #000000 70%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* ── Mobile Container ─────────────────────────────── */
+.mobile-container {
+  max-width: 420px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  /* subtle shadow framing */
+}
+
+/* ── Glassmorphism Core ───────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  min-height: 48px;
+  /* mobile tap target */
+  transition: all 0.2s ease-out;
+}
+
+.glass-button:hover,
+.glass-button:active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Typography & Glow ────────────────────────────── */
+.glow-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+/* ── Receipt / terminal font ──────────────────────── */
+.receipt-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* ── Background Animations ────────────────────────── */
+@keyframes neuralPulse {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: -4%;
+  }
+
+  100% {
+    top: 104%;
+  }
+}
+
+.scanline-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: scanline 4s linear infinite;
+}
